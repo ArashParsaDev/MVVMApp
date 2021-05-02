@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="Users"
+            type="com.example.mvvmapp.model.Users" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="8dp"
+        android:layout_margin="4dp"
+        >
+
+    <RelativeLayout
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:padding="8dp"
+        >
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:scaleType="centerCrop"
+            android:id="@+id/iv_item_user"
+            android:CircleImageView="@{Users.link_img}"
+            />
+
+        <TextView
+            android:id="@+id/username"
+            android:layout_toRightOf="@id/iv_item_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginLeft="8dp"
+            android:text="@{Users.name,default=Username}"
+            />
+
+        <TextView
+            android:layout_below="@id/username"
+            android:layout_toRightOf="@id/iv_item_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:text="@{Users.email,default=email}"
+            />
+
+    </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

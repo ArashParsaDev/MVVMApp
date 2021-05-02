@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="ViewPagerz"
+            type="com.example.mvvmapp.view.Part7ViewPagerActivity" />
+
+        <import type="android.view.View"/>
+        
+        <variable
+            name="FragmentManager"
+            type="androidx.fragment.app.FragmentManager" />
+    </data>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.Part7ViewPagerActivity">
+
+
+        <com.google.android.material.tabs.TabLayout
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:id="@+id/tabLayout"
+            app:SET_TABLAYOUT="@{viewPager}"
+            />
+
+       <!-- to add transparent tab backgraound do this :
+        android:layout_below="@id/viewpager"
+        app:tabGravity="center"
+        app:tabBackground="@drawable/tabs_background"
+        app:tabIndicatorHeight="0dp"
+        android:layout_marginTop="-44dp"
+        android:background="@android:color/transparent"
+        -->
+        <androidx.viewpager.widget.ViewPager
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tabLayout"
+            android:id="@+id/viewPager"
+            app:SET_VIEWPAGER="@{ViewPagerz}"
+            />
+
+
+
+    </RelativeLayout>
+</layout>
