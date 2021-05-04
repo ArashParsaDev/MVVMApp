@@ -143,6 +143,7 @@ public class Part9RoomDBActivity extends AppCompatActivity implements OnClickedI
     public void updateInformation(Information information){
         AlertDialog.Builder builder =new AlertDialog.Builder(this);
         View view = getLayoutInflater().inflate(R.layout.activity_update_information_room_d_b,null);
+
         EditText edt_user =view.findViewById(R.id.edt_updateInformation);
 
         edt_user.setText(information.getUsername());
@@ -156,24 +157,28 @@ public class Part9RoomDBActivity extends AppCompatActivity implements OnClickedI
 
 
         Button btn_updateInformation = view.findViewById(R.id.btn_updateInformation_ok);
+
+
         btn_updateInformation.setText("Update");
+
+        builder.setView(view);
+        AlertDialog alertDialog = builder.create();
+        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        alertDialog.show();
 
         btn_updateInformation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 information.setUsername(edt_user.getText().toString());
                 viewModelRoomDB.updateInformation(information);
                 Toast.makeText(Part9RoomDBActivity.this, "Updated Successfully", Toast.LENGTH_SHORT).show();
+                alertDialog.dismiss();
 
             }
         });
 
 
-        builder.setView(view);
-
-        AlertDialog alertDialog = builder.create();
-        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        alertDialog.show();
 
 
 
