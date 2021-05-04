@@ -12,7 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MVVMApp"
         android:usesCleartextTraffic="true">
-        <activity android:name=".view.UpdateInformationRoomDB"></activity>
+        <activity android:name=".view.Part10WorkManagerActivity">
+
+        </activity>
+        <activity android:name=".view.UpdateInformationRoomDB" />
         <activity android:name=".view.AddInformationRoomDB" />
         <activity android:name=".view.Part9RoomDBActivity">
             <intent-filter>
@@ -20,8 +23,9 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
-        <activity android:name=".view.Part7ViewPagerActivity"></activity>
+        <activity android:name=".view.Part7ViewPagerActivity" />
         <activity android:name=".view.Part6MovieActivity" />
         <activity android:name=".view.Part5NavigationActivity" />
         <activity android:name=".view.Part4LiveDataActivity" />

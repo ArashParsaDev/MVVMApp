@@ -2,10 +2,13 @@ package com.example.mvvmapp.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -23,7 +26,15 @@ public class AddInformationRoomDB extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_information_room_d_b);
 
+        setTitle("Insert Title");
+
         edt_add = findViewById(R.id.edt_addInformation_add);
+
+        edt_add.requestFocus();
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(edt_add, InputMethodManager.SHOW_IMPLICIT);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+
         btn_add = findViewById(R.id.btn_addInformation_add);
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,21 +1,18 @@
 package com.example.mvvmapp.adapter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.mvvmapp.Interface.OnDeleteItems;
+import com.example.mvvmapp.Interface.OnClickedItems;
 import com.example.mvvmapp.R;
 import com.example.mvvmapp.RoomDB.Information;
 import com.example.mvvmapp.view.UpdateInformationRoomDB;
@@ -23,40 +20,48 @@ import com.example.mvvmapp.view.UpdateInformationRoomDB;
 import java.util.List;
 import java.util.UUID;
 
+import static android.app.Activity.RESULT_OK;
+
 public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.MyViewHolder> {
 
     Context context;
     List<Information> data;
-    OnDeleteItems listener;
-    private static int REQUEST_CODE_INFORMATION_Update = 2 ;
+    OnClickedItems onClickedItems;
+    private static int REQUEST_CODE_INFORMATION_Update = 2;
 
 
 
-    public InformationAdapter(Context context, List<Information> data,OnDeleteItems listener) {
+    public InformationAdapter(Context context, List<Information> data, OnClickedItems onClickedItems) {
         this.context = context;
         this.data = data;
-        this.listener = listener;
+        this.onClickedItems = onClickedItems;
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_infomation,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_infomation, parent, false);
         return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
-        if (data != null) {
+       /* if (data != null) {
             holder.setInformation(data.get(position).getUsername(),position);
             holder.setListener();
-        }
+        }*/
+
+        Information information = data.get(position);
+
+        holder.tv_information.setText(information.getUsername());
+        holder.setListener(information);
+
 
     }
 
-    public void  saveInformation(List<Information> information){
-        data=information;
+    public void saveInformation(List<Information> information) {
+        this.data = information;
         notifyDataSetChanged();
     }
 
@@ -74,30 +79,30 @@ public class InformationAdapter extends RecyclerView.Adapter<InformationAdapter.
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            tv_information= itemView.findViewById(R.id.tv_item_addInformation);
-            iv_delete= itemView.findViewById(R.id.iv_itemInformation_delete);
-            iv_update= itemView.findViewById(R.id.iv_itemInformation_update);
+            tv_information = itemView.findViewById(R.id.tv_item_addInformation);
+            iv_delete = itemView.findViewById(R.id.iv_itemInformation_delete);
+            iv_update = itemView.findViewById(R.id.iv_itemInformation_update);
         }
 
-        public void setInformation(String username,int position){
+        public void setInformation(String username, int position) {
             tv_information.setText(username);
             Position = position;
         }
 
 
-        public  void setListener(){
+        public void setListener(Information information) {
 
             iv_delete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                listener.onDelete(data.get(Position));
+                    onClickedItems.onDelete(information);
                 }
             });
 
             iv_update.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    listener.onUpdate(data.get(Position));
+                    onClickedItems.onUpdate(information);
                 }
             });
         }

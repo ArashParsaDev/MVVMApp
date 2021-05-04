@@ -76,7 +76,6 @@ public class ViewModelRoomDB extends AndroidViewModel {
         }
     }
 
-    //sabete hamash - edameye AsyncTask
     public void deleteInformation(Information information){
         new DeleteInformationAsyncTask(informationDao).execute(information);
     }
@@ -99,7 +98,6 @@ public class ViewModelRoomDB extends AndroidViewModel {
         }
     }
 
-    //sabete hamash - edameye AsyncTask
     public void updateInformation(Information information){
         new UpdateInformationAsyncTask(informationDao).execute(information);
     }

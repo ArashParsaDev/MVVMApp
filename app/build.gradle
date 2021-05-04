@@ -16,6 +16,9 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         vectorDrawables.useSupportLibrary = true
+
+        multiDexEnabled true
+
     }
 
     buildTypes {
@@ -125,6 +128,16 @@ dependencies {
         // optional - Test helpers
         testImplementation "androidx.room:room-testing:$room_version"
     }
+
+    //WorkManager
+    dependencies {
+        def work_version = "2.5.0"
+
+        // (Java only)
+        implementation "androidx.work:work-runtime:$work_version"
+    }
+
+    implementation 'androidx.multidex:multidex:2.0.1'
 
 
 }
